@@ -6,20 +6,30 @@ public class TP1 {
 
     public static <string> void main(String[] args) {
 
-        int selector;
-        String strSelector;
+        int selector=0;
+        String strSelector="";
         boolean finished = false;
         String confirm = "no";
         String whatSelected;
 
         if (confirm == "no") {
             //Vamos A crear un menu para la seleccion de Puntos Usando JOptionPane
+            while (!finished)
+            {
+                try
+                {
+                    JOptionPane.showMessageDialog //Enseñamos las Opciones
+                            (null, "Los Puntos Van del 1 al 15 " + "\n" + "Selecciona un valor del 1 al 15 ");
 
-            JOptionPane.showMessageDialog //Enseñamos las Opciones
-                    (null, "Los Puntos Van del 1 al 15 " + "\n" + "Selecciona un valor del 1 al 15 ");
+                    strSelector = JOptionPane.showInputDialog(null, "Elige Punto");
+                    selector = Integer.parseInt(strSelector);
+                    finished=true;
+                } catch (RuntimeException e) {
+                    JOptionPane.showMessageDialog(null,"Solo Numeros");
+                }
 
-            strSelector = JOptionPane.showInputDialog(null, "Elige Punto");
-            selector = Integer.parseInt(strSelector);
+
+            }
 
             if (selector < 0 || selector > 14) {
                 System.out.println(strSelector + " No existe");
@@ -205,10 +215,17 @@ public class TP1 {
                         oportunitys = 0;
                         Random random = new  Random();
                         int randomInt = random.nextInt(100);
+                        int answer=0;
 
                         while (!gameComplete){
+                        boolean secondaryCheck=false;
 
-                        int answer = Integer.parseInt(JOptionPane.showInputDialog(null,"Adivine el numero que se ah generado del 1 al 100"));
+                        while (!secondaryCheck){
+                        try
+                        {answer = Integer.parseInt(JOptionPane.showInputDialog(null,"Adivine el numero que se ah generado del 1 al 100"));break;}
+                        catch (RuntimeException e) {
+                            JOptionPane.showMessageDialog(null,"solo Numeros");
+                        }}
 
                         oportunitys+=1;
 
